@@ -1,0 +1,13 @@
+{
+  "cxx_compiler": "clangxx",
+  "CONDA_BUILD_SYSROOT": "",
+  "zlib": "1.2",
+  "pcre": "8",
+  "bzip2": "1",
+  "curl": "8",
+  "cxx_compiler_version": "14",
+  "c_compiler": "clang",
+  "c_compiler_version": "14",
+  "channel_targets": "bioconda main",
+  "target_platform": "osx-64"
+}

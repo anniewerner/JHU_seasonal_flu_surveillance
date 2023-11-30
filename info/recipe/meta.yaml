@@ -1,0 +1,134 @@
+# This file created by conda-build 3.24.0
+# meta.yaml template originally from:
+# /Users/runner/work/1/s/recipes/blast, last modified Fri Nov 10 19:56:34 2023
+# ------------------------------------------------
+
+package:
+  name: blast
+  version: 2.15.0
+source:
+  - folder: blast
+    patches:
+      - configurellvm.patch
+      - get_species_taxids.patch
+      - phonehome.patch
+    sha256: 6918c370524c8d44e028bf491e8f245a895e07c66c77b261ce3b38d6058216e0
+    url: https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.15.0/ncbi-blast-2.15.0+-src.tar.gz
+  - folder: RpsbProc
+    patches:
+      - normbase.patch
+    sha256: 8b29f7e7d0a0654d10943e362557ed2d8df9a16218a4c8441c4dea4e7dc9154f
+    url: https://ftp.ncbi.nih.gov/pub/mmdb/cdd/rpsbproc/RpsbProc-src.tar.gz
+build:
+  number: '1'
+  run_exports:
+    - blast >=2.15.0,<2.16.0a0
+  string: pl5321h91c44f7_1
+requirements:
+  build:
+    - ca-certificates 2023.7.22 h8857fd0_0
+    - cctools_osx-64 973.0.1 hcc6d90d_13
+    - clang 14.0.6 h694c41f_1
+    - clang-14 14.0.6 default_hdb78580_1
+    - clang_osx-64 14.0.6 h3113cd8_6
+    - clangxx 14.0.6 default_hdb78580_1
+    - clangxx_osx-64 14.0.6 h6f97653_6
+    - compiler-rt 14.0.6 h613da45_0
+    - compiler-rt_osx-64 14.0.6 hab78ec2_0
+    - ld64_osx-64 609 hfd63004_13
+    - libclang-cpp14 14.0.6 default_hdb78580_1
+    - libcxx 16.0.6 hd57cbcb_0
+    - libllvm14 14.0.6 hc8e404f_4
+    - libzlib 1.2.13 h8a1eda9_5
+    - llvm-tools 14.0.6 hc8e404f_4
+    - make 4.3 h22f3db7_1
+    - openssl 3.1.4 hd75f5a5_0
+    - sigtool 0.1.3 h88f4db0_0
+    - tapi 1100.0.11 h9ce4665_0
+  host:
+    - bzip2 1.0.8 h10d778d_5
+    - c-ares 1.21.0 h10d778d_0
+    - ca-certificates 2023.7.22 h8857fd0_0
+    - curl 8.4.0 h726d00d_0
+    - entrez-direct 16.2 h193322a_1
+    - gettext 0.21.1 h8a4c099_0
+    - krb5 1.21.2 hb884880_0
+    - libcurl 8.4.0 h726d00d_0
+    - libcxx 16.0.6 hd57cbcb_0
+    - libedit 3.1.20191231 h0678c8f_2
+    - libev 4.33 haf1e3a3_1
+    - libiconv 1.17 hac89ed1_0
+    - libidn2 2.3.4 hb7f2c08_0
+    - libnghttp2 1.58.0 h64cf6d3_0
+    - libsqlite 3.44.0 h92b6c6a_0
+    - libssh2 1.11.0 hd019ec5_0
+    - libunistring 0.9.10 h0d85af4_0
+    - libzlib 1.2.13 h8a1eda9_5
+    - ncbi-vdb 3.0.0 pl5321h9722bc1_0
+    - ncurses 6.4 h93d8f39_2
+    - openssl 3.1.4 hd75f5a5_0
+    - pcre 8.45 he49afe7_0
+    - perl 5.32.1 4_h0dc2134_perl5
+    - readline 8.2 h9e318b2_1
+    - sqlite 3.44.0 h7461747_0
+    - wget 1.20.3 hd3787cc_1
+    - zlib 1.2.13 h8a1eda9_5
+    - zstd 1.5.5 h829000d_0
+  run:
+    - bzip2 >=1.0.8,<2.0a0
+    - curl
+    - entrez-direct
+    - libcxx >=14.0.6
+    - libsqlite >=3.44.0,<4.0a0
+    - libzlib >=1.2.13,<1.3.0a0
+    - ncbi-vdb
+    - pcre >=8.45,<9.0a0
+    - perl
+    - perl-archive-tar
+    - perl-json
+    - perl-list-moreutils
+    - zlib
+test:
+  commands:
+    - blastn -help
+    - blastp -help
+    - makeblastdb -help
+    - blastdb_aliastool -version > /dev/null
+    - blastdbcheck -version > /dev/null
+    - blastdbcmd -version > /dev/null
+    - blastn -version > /dev/null
+    - blastn_vdb -version > /dev/null
+    - blastp -version > /dev/null
+    - blastx -version > /dev/null
+    - convert2blastmask -version > /dev/null
+    - dustmasker -version > /dev/null
+    - makeblastdb -version > /dev/null
+    - makembindex -version > /dev/null
+    - psiblast -version > /dev/null
+    - rpsblast -version > /dev/null
+    - rpstblastn -version > /dev/null
+    - rpsbproc -version > /dev/null
+    - segmasker -version > /dev/null
+    - tblastn -version > /dev/null
+    - tblastn_vdb -version > /dev/null
+    - tblastx -version > /dev/null
+    - windowmasker -version > /dev/null
+    - update_blastdb.pl --version > /dev/null
+    - get_species_taxids.sh -h > /dev/null
+  files:
+    - test.fa
+    - testdatabase.fa
+about:
+  home: http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs
+  license: Public Domain
+  summary: BLAST+ is a new suite of BLAST tools that utilizes the NCBI C++ Toolkit.
+extra:
+  copy_test_source_files: true
+  final: true
+  identifiers:
+    - biotools:blast
+    - doi:10.1016/S0022-2836(05)80360-2
+    - usegalaxy-eu:ncbi_blastx_wrapper
+  recipe-maintainers:
+    - christiam
+    - epruesse
