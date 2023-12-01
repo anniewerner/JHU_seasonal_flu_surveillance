@@ -31,6 +31,7 @@ This workflow is based off of the software provided by [NCBI BLAST+](https://bla
    			-query $HOME/complete_path_to <blast_directory>/<input_data>/<your_sequences>.fasta \
    			-db $HOME/complete_path_to <blast_directory>/blastdb/influenza_annotation_blastdb.fasta \
    			-outfmt 10 \
+   			-culling_limit 1 \
    			-out <YYYYMMDD_name_of_output_file>.csv
    	
    	
