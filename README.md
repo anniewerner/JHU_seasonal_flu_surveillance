@@ -14,13 +14,23 @@ This workflow is based off of the software provided by [NCBI BLAST+](https://bla
 
 		# clone database into your local environment
 		git clone https://github.com/anniewerner/JHU_seasonal_flu_surveillance/flu_db
+		mkdir -p /complete_path_to <blast_directory>/blastdb
+		mv /current_path_to <flu_db> /complete_path_to <blast_directory>/blastdb
   
 4. change directory to where you have downloaded the NCBI BLAST+ files, make an input and output directory with your sequence files.
 
 		# changing working directory & configuring input and output directories
-   	cd <complete_path_to_blast_directory>
-   	mkdir <complete_path_to_blast_directory/input_data> 
-   	mkdir <complete_path_to_blast_directory/output_data> 
-   	
+   		cd /complete_path_to <blast_directory>
+   		mkdir /complete_path_to <blast_directory>/<input_data>
+   		mkdir /complete_path_to <blast_directory>/<output_data>
+   
+5. run blastn command to obtain results for your sequences of unspecified type and segment
+
+  		# run BLAST to determine virus type & genome segment
+   		blastn -task blastn \
+   			-query $HOME/complete_path_to <blast_directory>/<input_data>/<your_sequences>.fasta \
+   			-db $HOME/complete_path_to <blast_directory>/blastdb/influenza_annotation_blastdb.fasta \
+   			-outfmt 10 \
+   			-out <YYYYMMDD_name_of_output_file>.csv
    	
    	
